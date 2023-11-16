@@ -82,18 +82,6 @@ Teaching
 
 Industry experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-  
-Skills
-======
 * Full Stack Web Developer and Project Manager (Sep 2022 – Present)
 Republic of Korea Army Logistics Command (Daejeon, S. Korea)
   * Developed the Digital Weapons Maintenance and Analytics Platform and integrated predictive maintenance procedures and data-driven reliability tools, resulting in a 40% increase in system reliability and a significant reduction in maintenance costs across all service branches.
