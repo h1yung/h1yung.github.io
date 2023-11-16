@@ -1,5 +1,5 @@
 ---
-title: "Teaching experience 1"
+title: "CS 19000"
 collection: teaching
 type: "Undergraduate course"
 permalink: /teaching/2014-spring-teaching-1
