@@ -2,7 +2,7 @@
 title: "Deep Learning-Enhanced Cardiac Microphysiological Systems: Studying In Vitro and In Vivo Reentry Arrhythmia."
 collection: publications
 permalink: /publication/2024-01-01-paper-title-number-4
-excerpt: '(description)'
+excerpt: ''
 date: 2024-01-01
 venue: 'Nature BME'
 paperurl: 'https://h1yung.github.io'

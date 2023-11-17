@@ -2,7 +2,7 @@
 title: "Engineer's notebook as a cognitive device: Developing a realtime collaborative engineer's notebook iOS application."
 collection: publications
 permalink: /publication/2023-03-01-paper-title-number-2
-excerpt: '(description)'
+excerpt: ''
 date: 2023-03-01
 venue: 'Technology Engineering Teacher'
 paperurl: 'https://h1yung.github.io'

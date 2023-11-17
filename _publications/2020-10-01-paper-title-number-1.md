@@ -2,7 +2,7 @@
 title: "Language, Culture, and Identity Development in Adolescence: A Case Study of a Sixteen-Year-Old Multilingual Boy."
 collection: publications
 permalink: /publication/2020-10-01-paper-title-number-1
-excerpt: '(description)'
+excerpt: ''
 date: 2023-03-01
 venue: 'INTESOL Journal'
 paperurl: 'https://h1yung.github.io'

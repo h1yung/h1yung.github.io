@@ -2,7 +2,7 @@
 title: "Unsupervised Deep Convolutional Autoencoder-Based Anomaly Detection Approach for Identification of Arrhythmogenic Rhythms in Atrioventricular Block Hearts."
 collection: publications
 permalink: /publication/2024-01-01-paper-title-number-3
-excerpt: '(description)'
+excerpt: ''
 date: 2024-01-01
 venue: 'iScience'
 paperurl: 'https://h1yung.github.io'
