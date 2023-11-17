@@ -1,20 +1,10 @@
 ---
-title: "Teaching experience 2"
-collection: teaching
-type: "Workshop"
-permalink: /teaching/2015-spring-teaching-1
-venue: "University 1, Department"
-date: 2015-01-01
-location: "City, Country"
+title: "CS 19000"
+collection: teaching assistant
+type: "Undergraduate course"
+permalink: /teaching/2021-fall-teaching-2
+venue: "Purdue University, Department of Computer Sciences"
+date: 2021-08-23
+location: "West Lafayette, IN, USA"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
-
-Heading 1
-======
-
-Heading 2
-======
-
-Heading 3
-======
