@@ -5,7 +5,7 @@ permalink: /publication/2024-01-01-paper-title-number-4
 excerpt: ''
 date: 2024-01-01
 venue: 'Nature BME'
-paperurl: 'https://h1yung.github.io'
+paperurl: 'https://www.ahajournals.org/doi/10.1161/res.133.suppl_1.P1119'
 citation: 'Son, Y.H.*, Park, H.K.*, Sheng, C., Jang, J., Park, J., Park, S.J. (under review). Deep Learning-Enhanced Cardiac Microphysiological Systems: Studying In Vitro and In Vivo Reentry Arrhythmia. Nature Biomedical Engineering. (*equal contribution)'
 ---
 

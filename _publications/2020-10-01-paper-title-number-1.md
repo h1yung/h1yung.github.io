@@ -3,7 +3,7 @@ title: "Language, Culture, and Identity Development in Adolescence: A Case Study
 collection: publications
 permalink: /publication/2020-10-01-paper-title-number-1
 excerpt: ''
-date: 2023-03-01
+date: 2020-10-01
 venue: 'INTESOL Journal'
 paperurl: 'https://h1yung.github.io'
 citation: 'Han, J., & Park, H. K. (2020). Language, Culture, and Identity Development in Adolescence: A Case Study of a Sixteen-Year-Old Multilingual Boy. INTESOL Journal, 17(1).'
