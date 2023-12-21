@@ -6,6 +6,6 @@ excerpt: ''
 date: 2023-03-01
 venue: 'Technology Engineering Teacher'
 paperurl: 'https://h1yung.github.io'
-citation: 'Han, J., Park, H. K., & Kelley, T. R. (2023). Engineer's notebook as a cognitive device: Developing a realtime collaborative engineer's notebook iOS application. Technology and Engineering Teacher, 82(5), 20-26.'
+citation: "Han, J., Park, H. K., & Kelley, T. R. (2023). Engineer's notebook as a cognitive device: Developing a realtime collaborative engineer's notebook iOS application. Technology and Engineering Teacher, 82(5), 20-26."
 ---
 
