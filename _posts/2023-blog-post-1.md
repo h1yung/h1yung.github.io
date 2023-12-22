@@ -2,8 +2,11 @@
 title: 'Hello World'
 date: 2023-11-17
 permalink: /posts/2023/11/blog-post-1/
+excerpt_separator: <!--more-->
+toc: true
 tags:
-  - first post
+  - references
+  - bash
 ---
 
 Hello world! I realized that I need a personal website showcasing my creations, publications, and so on. My current objective is working in the academia, so I decided to use the academicpages template from GitHub.
