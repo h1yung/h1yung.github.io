@@ -1,7 +1,7 @@
 ---
 title: "Language, Culture, and Identity Development in Adolescence: A Case Study of a Sixteen-Year-Old Multilingual Boy."
 collection: publications
-permalink: /publication/2020LanguageCulture
+permalink: /publication/2020-LanguageCulture
 excerpt: ''
 date: 2020-10-01
 venue: 'INTESOL Journal'
