@@ -1,7 +1,7 @@
 ---
 title: "Unsupervised Deep Convolutional Autoencoder-Based Anomaly Detection Approach for Identification of Arrhythmogenic Rhythms in Atrioventricular Block Hearts."
 collection: publications
-permalink: /publication/2024-UnsupervisedAVB
+permalink: /publications/2024-UnsupervisedAVB
 excerpt: ''
 date: 2024-01-01
 venue: 'Circulation: Arrhythmia and Electrophysiology'
