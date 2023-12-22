@@ -1,7 +1,7 @@
 ---
 title: "Deep Learning-Enhanced Cardiac Microphysiological Systems: Studying In Vitro and In Vivo Reentry Arrhythmia."
 collection: publications
-permalink: /publication/2024-DLReentry
+permalink: /publications/2024-DLReentry
 excerpt: ''
 date: 2024-01-01
 venue: 'Nature BME'
