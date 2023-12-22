@@ -1,7 +1,7 @@
 ---
 title: "Engineer's notebook as a cognitive device: Developing a realtime collaborative engineer's notebook iOS application."
 collection: publications
-permalink: /publication/2023-EngineersNotebook
+permalink: /publications/2023-EngineersNotebook
 excerpt: ''
 date: 2023-03-01
 venue: 'Technology Engineering Teacher'
