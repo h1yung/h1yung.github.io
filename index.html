@@ -1,0 +1,65 @@
+<!doctype>
+<html>
+<head>
+
+	<!-- Place this data between the <head> tags of your website -->
+	<title>donut</title>
+	<meta name="description" content="a one-minute minigame."/>
+	<link rel="icon" type="image/png" href="favicon.png">
+
+	<!-- Style -->
+	<link rel="stylesheet" type="text/css" href="css/index.css"> 
+
+</head>
+<body>
+
+	<div id="loading"><div>LOADING</div></div>
+
+	<div id="whole_container">
+
+		<!--span style="display:none"-->
+		<div id="screen_one">
+			<canvas id="canvas_intro"></canvas>
+		</div>
+
+		<div id="screen_two">
+			<div id="canvas_container">
+
+				<canvas id="canvas_1" width="300" height="380"></canvas>
+				<canvas id="canvas_2" width="300" height="380"></canvas>
+				<canvas id="canvas_3" width="300" height="380" style="margin:0"></canvas>
+				
+				<div id="valentines_text">i love</div>
+				<div id="rewind_text">rewinding...</div>
+				<div id="replay_text">playing back...</div>
+
+			</div>
+		</div>
+		<!--/span-->
+
+		<div id="screen_three">
+
+			<div id="end_container">
+				
+				<span style="font-size:24px;">roses are red</span> <br>
+				<span style="font-size:24px;">the sun gives off heat</span> <br>
+				<span style="font-size:24px;">if your legs are tired</span> <br>
+				<span style="font-size:24px;">use my face as a seat</span> <br>
+				<span style="font-size:12px;">-michael</span>
+				<input id="your_message" placeholder="will you be my valentine?"></input>
+				
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
+
+<script src="js/Key.js"></script>
+<script src="js/game.js"></script>
+<script src="js/popup.js"></script>
+<script src="js/soundjs-0.6.0.min.js"></script>
+
+<script>
+//STAGE = 4;
+</script>
