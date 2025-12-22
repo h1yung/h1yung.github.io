@@ -5,7 +5,7 @@ permalink: /publications/
 author_profile: true
 ---
 
-<a href="{{author.googlescholar}}">my Google Scholar profile</a>
+<a href="{{ author.googlescholar }}">my Google Scholar profile</a>
 
 <!-- {% include base_path %}
 
