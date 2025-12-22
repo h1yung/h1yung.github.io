@@ -100,7 +100,11 @@ for pubsource in publist:
 
             #citation authors - todo - add highlighting for primary author?
             for author in bibdata.entries[bib_id].persons["author"]:
-                citation = citation+" "+author.first_names[0]+" "+author.last_names[0]+", "
+                print(author)
+                first_name = author.first_names[0] if author.first_names else ""
+                last_name = author.last_names[0] if author.last_names else ""
+                if first_name or last_name:
+                    citation = citation+" "+first_name+" "+last_name+", "
 
             #citation title
             citation = citation + "\"" + html_escape(b["title"].replace("{", "").replace("}","").replace("\\","")) + ".\""
@@ -151,9 +155,9 @@ for pubsource in publist:
 
             md_filename = os.path.basename(md_filename)
 
-            with open("../_publications/" + md_filename, 'w') as f:
+            with open("../_publications/" + md_filename, 'w', encoding="utf-8") as f:
                 f.write(md)
-            print(f'SUCESSFULLY PARSED {bib_id}: \"', b["title"][:60],"..."*(len(b['title'])>60),"\"")
+            print(f'SUCCESSFULLY PARSED {bib_id}: \"', b["title"][:60],"..."*(len(b['title'])>60),"\"")
         # field may not exist for a reference
         except KeyError as e:
             print(f'WARNING Missing Expected Field {e} from entry {bib_id}: \"', b["title"][:30],"..."*(len(b['title'])>30),"\"")
