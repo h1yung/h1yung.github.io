@@ -82,10 +82,10 @@ analytics:
 author:
   name             : "Hyeong Kyun Park"
   avatar           : "profile.png"
-  bio              : "AI S/W Engineer"
+  bio              : "ML Engineer | Researcher | Developer"
   location         : "Seoul, South Korea"
   employer         :  
-  googlescholar    : "https://scholar.google.com/citations?user=49nXJfwAAAAJ&hl=en&oi=ao"
+  googlescholar    : "https://scholar.google.com/citations?user=49nXJfwAAAAJ"
   email            : 
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
