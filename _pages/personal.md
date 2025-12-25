@@ -5,4 +5,4 @@ permalink: /personal/
 author_profile: true
 ---
 
-Coming Soon.
+Coming soon!

@@ -25,3 +25,7 @@ group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'hawkins'
 end
+
+# Required to run `jekyll serve` on Ruby ≥ 3
+# (WEBrick removed from stdlib in Ruby 3)
+gem "webrick", "~> 1.8"

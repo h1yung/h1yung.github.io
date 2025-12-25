@@ -11,6 +11,9 @@ models under distributional shifts, particularly:
 and
 2. Covariate shift, where P(X) changes while P(Y|X) remains stable
 (including adversarial settings).
+
+<img src="/images/conceptdrift.png" alt="Concept Drift" onerror="this.style.display='none'">
+
 Motivated by applications in resource-constrained domains such as
 healthcare (patient and lab data acquisition is expensive) and predictive
 breeding (weather effect is highly stochastic across years and sampling
