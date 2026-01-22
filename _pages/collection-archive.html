@@ -4,6 +4,42 @@ title: "Posts by Collection"
 permalink: /collection-archive/
 author_profile: true
 ---
+sorted by collection
+
+<style>
+.archive-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  flex-wrap: wrap;
+}
+
+.archive-nav__link {
+  padding: 0.5em 0.9em;
+  border: 1px solid #e0e0e0;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #0366d6;
+  background: #fff;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.archive-nav__link:hover {
+  background: #f5faff;
+}
+
+.archive-nav__link.is-active {
+  background: #0366d6;
+  color: #fff;
+  border-color: #0366d6;
+}
+</style>
+
+<div class="archive-nav">
+  <a class="archive-nav__link{% if page.permalink == '/categories/' %} is-active{% endif %}" href="/categories/">Categories</a>
+  <a class="archive-nav__link{% if page.permalink == '/collection-archive/' %} is-active{% endif %}" href="/collection-archive/">Collections</a>
+  <a class="archive-nav__link{% if page.permalink == '/year-archive/' %} is-active{% endif %}" href="/year-archive/">Years</a>
+</div>
 
 {% include base_path %}
 {% capture written_label %}'None'{% endcapture %}

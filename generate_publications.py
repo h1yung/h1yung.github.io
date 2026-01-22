@@ -1,35 +1,26 @@
-#!/usr/bin/env python3
-"""
-Generate publications.md from BibTeX files with expandable sections.
-This script parses .bib files and creates an expandable publication list
-similar to the software page format.
-"""
-
-import re
 import os
+import re
+from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List
-from urllib.parse import quote
 
 
 def parse_bibtex(bib_file: str) -> List[Dict]:
-    """Parse BibTeX file and extract publication entries."""
-    with open(bib_file, 'r', encoding='utf-8') as f:
+    """Parse a BibTeX file into a list of entry dictionaries."""
+    with open(bib_file, "r", encoding="utf-8") as f:
         content = f.read()
-    
-    # Match @article, @inproceedings, @book, etc.
-    entries = []
-    pattern = r'@(\w+)\{([^,]+),\s*([\s\S]*?)\n\}'
-    
+
+    entries: List[Dict] = []
+    pattern = r"@(\w+)\{([^,]+),\s*([\s\S]*?)\n\}"
+
     for match in re.finditer(pattern, content):
-        entry_type = match.group(1)
+        entry_type = match.group(1).lower()
         entry_key = match.group(2)
         fields_text = match.group(3)
-        
-        # Parse fields
-        fields = {'type': entry_type, 'key': entry_key}
-        field_pattern = r'(\w+)\s*=\s*\{([^}]*)\}|(\w+)\s*=\s*"([^"]*)"'
-        
+
+        fields: Dict[str, str] = {"type": entry_type, "key": entry_key}
+        field_pattern = r"(\w+)\s*=\s*\{([^}]*)\}|(\w+)\s*=\s*\"([^\"]*)\""
+
         for field_match in re.finditer(field_pattern, fields_text):
             if field_match.group(1):
                 field_name = field_match.group(1).lower()
@@ -37,315 +28,150 @@ def parse_bibtex(bib_file: str) -> List[Dict]:
             else:
                 field_name = field_match.group(3).lower()
                 field_value = field_match.group(4)
-            
             fields[field_name] = field_value.strip()
-        
+
         entries.append(fields)
-    
+
     return entries
 
 
 def format_authors(author_string: str) -> str:
-    """Format author names from BibTeX format."""
     if not author_string:
         return ""
-    
-    # Split by 'and'
-    authors = [a.strip() for a in author_string.split(' and ')]
-    
-    # Format each author (assume "Last, First" or "First Last" format)
+    authors = [a.strip() for a in author_string.split(" and ")]
     formatted = []
     for author in authors:
-        if ',' in author:
-            parts = author.split(',')
+        if "," in author:
+            parts = author.split(",")
             formatted.append(f"{parts[1].strip()} {parts[0].strip()}")
         else:
             formatted.append(author)
-    
-    if len(formatted) == 1:
-        return formatted[0]
-    elif len(formatted) == 2:
-        return f"{formatted[0]} and {formatted[1]}"
-    else:
-        return ', '.join(formatted[:-1]) + f", and {formatted[-1]}"
+    if len(formatted) <= 6:
+        return ", ".join(formatted)
+    return ", ".join(formatted[:7]) + ", ..."
 
 
-def generate_citation(entry: Dict) -> str:
-    """Generate a formatted citation string."""
-    authors = format_authors(entry.get('author', ''))
-    title = entry.get('title', 'Untitled')
-    year = entry.get('year', 'n.d.')
-    
-    citation = f"{authors}. \"{title}.\""
-    
-    if entry['type'] == 'article':
-        journal = entry.get('journal', '')
-        volume = entry.get('volume', '')
-        number = entry.get('number', '')
-        pages = entry.get('pages', '')
-        
-        if journal:
-            citation += f" <em>{journal}</em>"
-        if volume:
-            citation += f" {volume}"
-        if number:
-            citation += f" ({number})"
-        if pages:
-            citation += f": {pages}"
-        citation += f", {year}."
-    
-    elif entry['type'] == 'inproceedings' or entry['type'] == 'conference':
-        booktitle = entry.get('booktitle', '')
-        if booktitle:
-            citation += f" In <em>{booktitle}</em>, {year}."
-        else:
-            citation += f" {year}."
-    
-    elif entry['type'] == 'book':
-        publisher = entry.get('publisher', '')
-        if publisher:
-            citation += f" {publisher}, {year}."
-        else:
-            citation += f" {year}."
-    
-    else:
-        citation += f" {year}."
-    
-    return citation
+def to_sentence_case(title: str) -> str:
+    if not title:
+        return ""
+    return title[0].upper() + title[1:]
 
 
-def create_google_scholar_link(title: str) -> str:
-    """Create a Google Scholar search link for the publication."""
-    query = quote(title)
-    return f"https://scholar.google.com/scholar?q={query}"
+def entry_text(entry: Dict) -> str:
+    authors = format_authors(entry.get("author", ""))
+    title = to_sentence_case(entry.get("title", "Untitled"))
+    journal = entry.get("journal", "").strip()
+    book = entry.get("booktitle", "").strip()
+    address = entry.get("address", "").strip()
+    status = entry.get("status", "").strip()
+    note = entry.get("note", "").strip()
+    doi = entry.get("doi", "").strip()
+    url = entry.get("url", "").strip()
+    month = entry.get("month", "").strip()
+    year = entry.get("year", "").strip()
 
+    parts = []
+    if authors:
+        parts.append(authors)
+    if title:
+        parts.append(f"<span class=\"pub-title\">{title}</span>")
 
-def generate_html_entry(entry: Dict, index: int) -> str:
-    """Generate HTML for a single publication entry with expandable section."""
-    title = entry.get('title', 'Untitled')
-    authors = format_authors(entry.get('author', ''))
-    year = entry.get('year', 'n.d.')
-    venue = entry.get('journal', entry.get('booktitle', entry.get('publisher', '')))
-    citation = generate_citation(entry)
-    scholar_link = create_google_scholar_link(title)
-    
-    # Get additional metadata for expanded section
-    abstract = entry.get('abstract', '')
-    doi = entry.get('doi', '')
-    url = entry.get('url', '')
-    keywords = entry.get('keywords', '')
-    
-    # Create preview text (authors + venue + year)
-    preview_text = f"{authors[:80]}{'...' if len(authors) > 80 else ''}"
-    if venue:
-        preview_text += f" • {venue}"
-    preview_text += f" • {year}"
-    
-    html = f'''<div class="publication-item">
-  <details>
-    <summary>
-      <div class="publication-preview">
-        <div>
-          <strong>{title}</strong>
-          <div class="publication-meta">{preview_text}</div>
-        </div>
-      </div>
-    </summary>
-    <div class="publication-content">
-      <p class="citation">{citation}</p>
-'''
-    
-    if abstract:
-        html += f'''      
-      <h4>Abstract</h4>
-      <p class="abstract">{abstract}</p>
-'''
-    
-    if keywords:
-        html += f'''      
-      <p><strong>Keywords:</strong> {keywords}</p>
-'''
-    
-    html += '''      
-      <div class="publication-links">
-'''
-    
+    venue_bits = []
+    if journal:
+        venue_bits.append(journal)
+    if book:
+        venue_bits.append(book)
+    if address:
+        venue_bits.append(address)
+
+    if status:
+        parts.append(f"(under review at {journal if journal else status})")
+    elif note:
+        parts.append(f"({note})")
+
+    if venue_bits:
+        parts.append(" – ".join(venue_bits))
+
+    if month and year:
+        parts.append(f"{month.capitalize()} {year}")
+    elif year:
+        parts.append(year)
+
     if doi:
-        html += f'''        <a href="https://doi.org/{doi}" target="_blank">DOI</a>
-'''
-    
+        parts.append(f"doi:{doi}")
     if url:
-        html += f'''        <a href="{url}" target="_blank">URL</a>
-'''
-    
-    html += f'''        <a href="{scholar_link}" target="_blank">Google Scholar</a>
-      </div>
-    </div>
-  </details>
-</div>
+        parts.append(url)
 
-'''
-    
-    return html
+    return " ".join(parts)
 
 
-def generate_publications_page(bib_files: List[str], output_file: str):
-    """Generate the publications.md file from BibTeX files."""
-    
-    # Parse all BibTeX files
-    all_entries = []
+def render_cards(grouped: Dict[str, List[Dict]]) -> str:
+    html = []
+    for year in sorted(grouped.keys(), reverse=True):
+        html.append('<div class="year-row">')
+        html.append(f'  <div class="year-label">{year}</div>')
+        html.append('  <div class="year-stack">')
+        for entry in grouped[year]:
+            html.append('    <div class="publication-card">')
+            html.append(f"      <div class=\"publication-body\">{entry_text(entry)}</div>")
+            html.append('    </div>')
+        html.append('  </div>')
+        html.append('</div>')
+    return "\n".join(html)
+
+
+def generate_publications_page(bib_files: List[str], output_file: str) -> None:
+    grouped: Dict[str, List[Dict]] = defaultdict(list)
+
     for bib_file in bib_files:
         if os.path.exists(bib_file):
             entries = parse_bibtex(bib_file)
-            all_entries.extend(entries)
-    
-    # Sort by year (descending)
-    all_entries.sort(key=lambda x: int(x.get('year', '0')), reverse=True)
-    
-    # Generate HTML
-    html_content = '''---
-layout: archive
-title: "Publications"
-permalink: /publications/
-author_profile: true
----
+            for e in entries:
+                year = e.get("year", "n.d.").strip() or "n.d."
+                grouped[year].append(e)
 
-<style>
-.publication-item {
-  margin: 0.75em 0;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  overflow: hidden;
-}
+    # Stable sort inside each year: keep file order but ensure articles before others
+    for year_entries in grouped.values():
+        year_entries.sort(key=lambda x: (0 if x.get("type") == "article" else 1, x.get("title", "")))
 
-.publication-item details {
-  background: #f9f9f9;
-}
-
-.publication-item summary {
-  padding: 0.75em 1em;
-  cursor: pointer;
-  font-size: 0.95em;
-  background: #fff;
-  border-bottom: 1px solid #e8e8e8;
-  transition: background 0.3s;
-  list-style: none;
-  display: flex;
-  align-items: center;
-}
-
-.publication-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.publication-item summary::before {
-  content: "▶";
-  display: inline-block;
-  transition: transform 0.3s;
-  margin-right: 0.5em;
-  flex-shrink: 0;
-}
-
-.publication-item details[open] summary::before {
-  transform: rotate(90deg);
-}
-
-.publication-item summary:hover {
-  background: #f5f5f5;
-}
-
-.publication-preview {
-  display: flex;
-  align-items: flex-start;
-  gap: 1em;
-}
-
-.publication-content {
-  padding: 0.75em 1em;
-  background: #fff;
-  line-height: 1.4;
-  font-size: 0.9em;
-}
-
-.publication-meta {
-  color: #666;
-  font-size: 0.85em;
-  margin-top: 0.25em;
-}
-
-.citation {
-  font-size: 0.85em;
-  line-height: 1.4;
-  margin-bottom: 0.75em;
-  padding: 0.5em 0.75em;
-  background: #f8f8f8;
-  border-left: 2px solid #0366d6;
-}
-
-.abstract {
-  text-align: justify;
-  margin: 0.5em 0;
-  font-size: 0.9em;
-}
-
-.publication-content h4 {
-  margin-top: 0.75em;
-  margin-bottom: 0.35em;
-  color: #333;
-  font-size: 1em;
-}
-
-.publication-links {
-  margin-top: 0.75em;
-  padding-top: 0.5em;
-  border-top: 1px solid #e8e8e8;
-}
-
-.publication-links a {
-  display: inline-block;
-  margin-right: 0.5em;
-  margin-bottom: 0.25em;
-  padding: 0.35em 0.75em;
-  background: #0366d6;
-  color: white;
-  text-decoration: none;
-  border-radius: 3px;
-  font-size: 0.85em;
-  transition: background 0.3s;
-}
-
-.publication-links a:hover {
-  background: #0256c2;
-}
-</style>
-
-'''
-    
-    # Add publication entries
-    for i, entry in enumerate(all_entries):
-        html_content += generate_html_entry(entry, i)
-    
-    # Write to file
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(html_content)
-    
-    print(f"Generated {output_file} with {len(all_entries)} publications")
-
-
-def main():
-    """Main function to generate publications page."""
-    # Set paths
-    script_dir = Path(__file__).parent
-    bib_files = [
-        script_dir / 'markdown_generator' / 'pubs.bib',
-        script_dir / 'markdown_generator' / 'proceedings.bib',
+    html_parts = [
+        "---",
+        "layout: archive",
+        "title: \"Publications\"",
+        "permalink: /publications/",
+        "author_profile: true",
+        "---",
+        "",
+        "<style>",
+        ".year-row { display: grid; grid-template-columns: 5rem 1fr; gap: 1rem; align-items: start; margin: 1rem 0; }",
+        ".year-label { font-weight: 700; color: #444; text-align: right; padding-top: 0.35rem; }",
+        ".year-stack { display: grid; gap: 0.75rem; }",
+        ".publication-card { border: 1px solid #e8e8e8; border-radius: 6px; background: #fff; padding: 0.75rem 1rem; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }",
+        ".publication-body { line-height: 1.55; }",
+        ".publication-body .pub-title { font-weight: 700; font-style: italic; }",
+        "@media (max-width: 640px) { .year-row { grid-template-columns: 1fr; } .year-label { text-align: left; } }",
+        "</style>",
+        "",
     ]
-    
-    output_file = script_dir / '_pages' / 'publications.md'
-    
-    # Generate the page
+
+    html_parts.append(render_cards(grouped))
+
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(html_parts))
+
+    total = sum(len(v) for v in grouped.values())
+    print(f"Generated {output_file} with {total} entries across {len(grouped)} years")
+
+
+def main() -> None:
+    root = Path(__file__).parent
+    bib_files = [
+        str(root / "markdown_generator" / "pubs.bib"),
+        str(root / "markdown_generator" / "proceedings.bib"),
+    ]
+    output_file = str(root / "_pages" / "publications.md")
     generate_publications_page(bib_files, output_file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

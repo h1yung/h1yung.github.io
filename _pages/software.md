@@ -163,7 +163,7 @@ author_profile: true
         <img src="/images/software/btcdriftpilot.png" alt="BTC DriftPilot" onerror="this.style.display='none'">
         <div>
           <strong>BTC-DriftPilot</strong>
-          <div class="software-meta">Applet for BTCUSD trading strategy selection with concept drift monitoring</div>
+          <div class="software-meta">Streamlit App for BTCUSD trading strategy selection with concept drift monitoring</div>
         </div>
       </div>
     </summary>
