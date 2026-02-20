@@ -1,0 +1,18 @@
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+/usr/local/opt/ruby/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j9 DESTDIR\= sitearchdir\=./.gem.20260220-38814-sa3dua sitelibdir\=./.gem.20260220-38814-sa3dua clean
+
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j9 DESTDIR\= sitearchdir\=./.gem.20260220-38814-sa3dua sitelibdir\=./.gem.20260220-38814-sa3dua
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j9 DESTDIR\= sitearchdir\=./.gem.20260220-38814-sa3dua sitelibdir\=./.gem.20260220-38814-sa3dua install
+/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20260220-38814-sa3dua/racc
+
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260220-38814-sa3dua sitelibdir\=./.gem.20260220-38814-sa3dua clean

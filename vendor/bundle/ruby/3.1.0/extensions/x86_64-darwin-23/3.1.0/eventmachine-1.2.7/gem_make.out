@@ -1,0 +1,20 @@
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+/usr/local/opt/ruby@3.1/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20260220-46675-l4g51p sitelibdir\=./.gem.20260220-46675-l4g51p clean
+
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20260220-46675-l4g51p sitelibdir\=./.gem.20260220-46675-l4g51p
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.1'
+
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20260220-46675-l4g51p sitelibdir\=./.gem.20260220-46675-l4g51p install
+/usr/bin/install -c -m 0755 fastfilereaderext.bundle ./.gem.20260220-46675-l4g51p
+
+current directory: /Users/danielpark/self_projects/h1yung.github.io/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20260220-46675-l4g51p sitelibdir\=./.gem.20260220-46675-l4g51p clean

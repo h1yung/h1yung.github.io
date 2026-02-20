@@ -29,3 +29,9 @@ end
 # Required to run `jekyll serve` on Ruby ≥ 3
 # (WEBrick removed from stdlib in Ruby 3)
 gem "webrick", "~> 1.8"
+
+# Required on Ruby >= 3.4 where csv is no longer a default gem
+gem "csv", "~> 3.3"
+
+# Required on Ruby >= 3.4 where bigdecimal is no longer a default gem
+gem "bigdecimal", "~> 3.1"
