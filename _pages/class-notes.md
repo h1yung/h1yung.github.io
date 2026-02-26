@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: archive
 title: "Class Notes (in Latex)"
 permalink: /class-notes/
@@ -91,4 +91,4 @@ author_profile: true
     </div>
     <div class="note-link">View Notes →</div>
   </a>
-</div>
+</div> -->
