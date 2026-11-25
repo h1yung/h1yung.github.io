@@ -27,9 +27,9 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi 👋, my name is Hyeong Kyun (Daniel, 박형균) Park, a Computer Science Ph.D. student at Purdue University. I am advised by Dr. Ninghui Li.
+Hi 👋, my name is Hyeong Kyun (Daniel) Park, a Computer Science Ph.D. student at Purdue University. I am advised by Dr. Ninghui Li to research **AI Privacy and Security**.
 
-I also graduated from Purdue University with M.S. Computer Science + Statistics (2024-2026), advised by Dr. Mark Daniel Ward creating AI solutions robust to data drifts.
+I also graduated from Purdue University with M.S. Statistics + Computer Science (2024-2026), advised by Dr. Mark Daniel Ward creating AI solutions robust to data drifts.
 
 I proudly served and received honorary discharge from the Republic of Korea Army, where I developed and drafted business proposals surrounding defense logistics automation solutions at the Army Logistics Command as Sergant (2022-2024).
 
